@@ -1,0 +1,17 @@
+<h1>Edit students</h1>
+
+<%= form_for @product do |form| %>
+	<p class="name"><%= form.label :name %></p>
+	<%= form.text_field :name %>
+	<br>
+	<p><%= form.label :description %></p>
+	<%= form.text_field :description %>
+	<br>
+	<p><%= form.label :photo %></p>
+	<%= form.text_field :photo %>
+	<br>
+	<p class="price"><%= form.label :price %></p>
+	<%= form.text_field :price %>
+	<br>
+	<%= form.submit 'Save changes' %>
+<% end %>

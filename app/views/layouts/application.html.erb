@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GoShop</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/">GoShop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-link">
+                <a class="btn btn-primary" href="<%= new_product_path %>">Hello, <%= current_user.email %></a>
+              </li>
+              <li class="nav-link">
+                <a class="nav-link" href="">Balance: <%= current_user.balance %></a>
+              </li>
+              <li class="nav-link">
+                <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'nav-link') %>
+              </li>
+              <div class="marg">
+                <li class="nav-item">
+                  <%= link_to cart_path, class: 'btn btn-primary' do %>
+                  <img src="http://www.pngmart.com/files/7/Cart-PNG-Clipart.png" style="width: 25px; height: 25px;">
+                  <% end %>
+                </li>
+              </div>
+            <% else %>
+              <li class="nav-link">
+                <%= link_to('Login', new_user_session_path, class: 'nav-link') %>
+              </li>
+              <li class="nav-link">
+                <%= link_to('Sign up', new_user_registration_path, class: 'nav-link') %>
+              </li>
+            <% end %>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
+

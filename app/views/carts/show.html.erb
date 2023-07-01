@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-lg-6">
+    <h1>Receipt</h1>
+    <h3>You have successfully purchased the following items</h3>
+  </div>
+
+  <div class="col-lg-12">
+  	<table class="table">
+  		<thead>
+  			<tr>
+  				<th scope="col">No.</th>
+  				<th scope="col">Product Name</th>
+  				<th scope="col">Price</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+  			<% @checked_out_cart.cart_items.each_with_index do |cart_item, index| %>
+  				<tr>
+  					<td scope="row"><%= index + 1 %></td>
+  					<td><%= cart_item.product.name %></td>
+  					<td><%= cart_item.product.price %></td>
+  				</tr>
+  			<% end %>
+
+  			<tr>
+  					<td scope="row"></td>
+  					<td>Subtotal:</td>
+  					<td><%= @checked_out_cart.subtotal %></td>
+        </tr>
+  			<tr>
+  					<td scope="row"></td>
+  					<td>Tax (10%):</td>
+  					<td><%= @checked_out_cart.tax.round %></td>
+        </tr>
+  			<tr>
+  					<td scope="row"></td>
+  					<td><strong>Total: </strong></td>
+  					<td><strong>AMD: <%= @checked_out_cart.total.round %></strong></td>
+        </tr>
+  		</tbody>
+  	</table>
+  </div>
